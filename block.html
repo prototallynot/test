@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russian Block Code Converter</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #1a1a2e;
+            color: #e6e6e6;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ffdd59;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a4b0be;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 300px;
+            background-color: #162447;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card h2 {
+            color: #4bcffa;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3c40c6;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            background-color: #0c2461;
+            color: #e6e6e6;
+            border: 1px solid #3c40c6;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #4bcffa;
+            box-shadow: 0 0 0 2px rgba(75, 207, 250, 0.2);
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background-color: #3c40c6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #575fcf;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        #convertBtn {
+            background-color: #0be881;
+            color: #1a1a2e;
+        }
+        
+        #convertBtn:hover {
+            background-color: #05c46b;
+        }
+        
+        #swapBtn {
+            background-color: #ffa801;
+            color: #1a1a2e;
+        }
+        
+        #swapBtn:hover {
+            background-color: #ff9f1a;
+        }
+        
+        #clearBtn {
+            background-color: #ff5e57;
+        }
+        
+        #clearBtn:hover {
+            background-color: #ff3f34;
+        }
+        
+        .info-panel {
+            background-color: #162447;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-panel h2 {
+            color: #4bcffa;
+            margin-bottom: 15px;
+        }
+        
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .example-item {
+            background-color: #0c2461;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3c40c6;
+        }
+        
+        .example-item h4 {
+            color: #ffdd59;
+            margin-bottom: 8px;
+        }
+        
+        .mapping-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .mapping-table th, .mapping-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #3c40c6;
+        }
+        
+        .mapping-table th {
+            background-color: #3c40c6;
+            color: #ffdd59;
+        }
+        
+        .mapping-table td {
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        
+        .original {
+            color: #0be881;
+        }
+        
+        .converted {
+            color: #ffa801;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #3c40c6;
+            color: #a4b0be;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Russian Block Code Converter</h1>
+        <p class="subtitle">Convert English text to Russian block code (pseudo-Cyrillic) and vice versa. Russian block code uses Cyrillic characters that resemble Latin letters to create a "coded" appearance.</p>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Input Text</h2>
+            <textarea id="inputText" placeholder="Enter English text here to convert to Russian block code...">Hello, this is a demonstration of Russian block code conversion. Try converting this text!</textarea>
+            <div class="button-container">
+                <button id="convertBtn">Convert to Block Code →</button>
+                <button id="swapBtn">↔ Swap Conversion</button>
+                <button id="clearBtn">Clear All</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Converted Text</h2>
+            <textarea id="outputText" placeholder="Your converted text will appear here..." readonly></textarea>
+            <div class="button-container">
+                <button id="copyBtn">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info-panel">
+        <h2>About Russian Block Code</h2>
+        <p>Russian block code (also known as pseudo-Cyrillic, faux Cyrillic, or "Renglish") is a method of writing English words using Cyrillic characters that look similar to Latin letters. This creates text that appears foreign at first glance but can be read by English speakers with some effort.</p>
+        
+        <div class="examples">
+            <div class="example-item">
+                <h4>Example 1: Simple Conversion</h4>
+                <p><span class="original">Hello World</span> → <span class="converted">Неllо Wоrld</span></p>
+            </div>
+            <div class="example-item">
+                <h4>Example 2: Longer Text</h4>
+                <p><span class="original">This looks Russian</span> → <span class="converted">Тhis lооks Russiаn</span></p>
+            </div>
+            <div class="example-item">
+                <h4>Example 3: Reversal</h4>
+                <p><span class="converted">Сомрutеr Sсiеnсе</span> → <span class="original">Computer Science</span></p>
+            </div>
+        </div>
+        
+        <h3 style="margin-top: 25px; color: #ffdd59;">Character Mapping</h3>
+        <table class="mapping-table">
+            <thead>
+                <tr>
+                    <th>Latin Letter</th>
+                    <th>Cyrillic Equivalent</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A, a</td>
+                    <td>А, а</td>
+                    <td><span class="original">Apple</span> → <span class="converted">Аррlе</span></td>
+                </tr>
+                <tr>
+                    <td>B, b</td>
+                    <td>В, в</td>
+                    <td><span class="original">Book</span> → <span class="converted">Вооk</span></td>
+                </tr>
+                <tr>
+                    <td>E, e</td>
+                    <td>Е, е</td>
+                    <td><span class="original">Elephant</span> → <span class="converted">Еlерhаnt</span></td>
+                </tr>
+                <tr>
+                    <td>K, k</td>
+                    <td>К, к</td>
+                    <td><span class="original">Kite</span> → <span class="converted">Кitе</span></td>
+                </tr>
+                <tr>
+                    <td>M, m</td>
+                    <td>М, м</td>
+                    <td><span class="original">Mango</span> → <span class="converted">Маngо</span></td>
+                </tr>
+                <tr>
+                    <td>O, o</td>
+                    <td>О, о</td>
+                    <td><span class="original">Orange</span> → <span class="converted">Оrаngе</span></td>
+                </tr>
+                <tr>
+                    <td>P, p</td>
+                    <td>Р, р</td>
+                    <td><span class="original">Paper</span> → <span class="converted">Рареr</span></td>
+                </tr>
+                <tr>
+                    <td>C, c</td>
+                    <td>С, с</td>
+                    <td><span class="original">Cat</span> → <span class="converted">Сat</span></td>
+                </tr>
+                <tr>
+                    <td>T, t</td>
+                    <td>Т, т</td>
+                    <td><span class="original">Table</span> → <span class="converted">Таblе</span></td>
+                </tr>
+                <tr>
+                    <td>X, x</td>
+                    <td>Х, х</td>
+                    <td><span class="original">X-ray</span> → <span class="converted">Х-rау</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <footer>
+        <p>Russian Block Code Converter | This tool is for educational and entertainment purposes only</p>
+        <p>Note: Some characters may appear identical but are different Unicode characters (Cyrillic vs Latin)</p>
+    </footer>
+
+    <script>
+        // Character mapping for conversion
+        const toCyrillicMap = {
+            'A': 'А', 'a': 'а',
+            'B': 'В', 'b': 'в',
+            'C': 'С', 'c': 'с',
+            'E': 'Е', 'e': 'е',
+            'H': 'Н', 'h': 'н',
+            'K': 'К', 'k': 'к',
+            'M': 'М', 'm': 'м',
+            'O': 'О', 'o': 'о',
+            'P': 'Р', 'p': 'р',
+            'T': 'Т', 't': 'т',
+            'X': 'Х', 'x': 'х',
+            'Y': 'У', 'y': 'у'
+        };
+        
+        // Reverse mapping for conversion back to Latin
+        const toLatinMap = {
+            'А': 'A', 'а': 'a',
+            'В': 'B', 'в': 'b',
+            'С': 'C', 'с': 'c',
+            'Е': 'E', 'е': 'e',
+            'Н': 'H', 'н': 'h',
+            'К': 'K', 'к': 'k',
+            'М': 'M', 'м': 'm',
+            'О': 'O', 'о': 'o',
+            'Р': 'P', 'р': 'p',
+            'Т': 'T', 'т': 't',
+            'Х': 'X', 'х': 'x',
+            'У': 'Y', 'у': 'y'
+        };
+        
+        // DOM elements
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const convertBtn = document.getElementById('convertBtn');
+        const swapBtn = document.getElementById('swapBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        
+        // Convert English to Russian block code
+        function toRussianBlockCode(text) {
+            return text.split('').map(char => {
+                return toCyrillicMap[char] || char;
+            }).join('');
+        }
+        
+        // Convert Russian block code back to English
+        function toLatin(text) {
+            return text.split('').map(char => {
+                return toLatinMap[char] || char;
+            }).join('');
+        }
+        
+        // Check if text contains Cyrillic characters from our mapping
+        function containsCyrillic(text) {
+            const cyrillicChars = Object.keys(toLatinMap).join('');
+            const cyrillicRegex = new RegExp(`[${cyrillicChars}]`);
+            return cyrillicRegex.test(text);
+        }
+        
+        // Perform conversion based on input
+        function convertText() {
+            const text = inputText.value;
+            if (!text.trim()) {
+                outputText.value = '';
+                return;
+            }
+            
+            if (containsCyrillic(text)) {
+                // If text contains Cyrillic characters, convert to Latin
+                outputText.value = toLatin(text);
+            } else {
+                // Otherwise, convert to Cyrillic
+                outputText.value = toRussianBlockCode(text);
+            }
+        }
+        
+        // Swap input and output text
+        function swapText() {
+            const input = inputText.value;
+            const output = outputText.value;
+            
+            if (output.trim()) {
+                inputText.value = output;
+                outputText.value = input;
+            } else {
+                // If output is empty, just convert what's in input
+                convertText();
+            }
+        }
+        
+        // Clear both text areas
+        function clearText() {
+            inputText.value = '';
+            outputText.value = '';
+            inputText.focus();
+        }
+        
+        // Copy output text to clipboard
+        async function copyToClipboard() {
+            if (!outputText.value.trim()) {
+                alert('No text to copy!');
+                return;
+            }
+            
+            try {
+                await navigator.clipboard.writeText(outputText.value);
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy text to clipboard');
+            }
+        }
+        
+        // Add example text
+        function addExample() {
+            const examples = [
+                "Hello, welcome to the Russian block code converter!",
+                "This tool transforms text into pseudo-Cyrillic characters.",
+                "Try converting this sentence and see what happens.",
+                "The quick brown fox jumps over the lazy dog."
+            ];
+            
+            const randomExample = examples[Math.floor(Math.random() * examples.length)];
+            inputText.value = randomExample;
+            convertText();
+        }
+        
+        // Event listeners
+        convertBtn.addEventListener('click', convertText);
+        swapBtn.addEventListener('click', swapText);
+        clearBtn.addEventListener('click', clearText);
+        copyBtn.addEventListener('click', copyToClipboard);
+        
+        // Convert on page load
+        window.addEventListener('load', () => {
+            convertText();
+            
+            // Add a random example on first load
+            setTimeout(addExample, 500);
+        });
+        
+        // Convert on input change (with debouncing)
+        let typingTimer;
+        inputText.addEventListener('input', () => {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(convertText, 300);
+        });
+    </script>
+</body>
+</html>
