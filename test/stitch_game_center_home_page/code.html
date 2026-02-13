@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>prototallynot's center - Game Center</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9d406",
+                        "primary-hover": "#e6c205",
+                        "background-light": "#f0f4f8",
+                        "background-dark": "#0f172a", /* Deep navy/slate base */
+                        "card-dark": "#1e293b", /* Slightly lighter navy for cards */
+                        "tech-blue": "#3b82f6", /* Accent blue for tech vibes */
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Neon Glow Utilities */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(249, 212, 6, 0.5), 0 0 20px rgba(249, 212, 6, 0.3);
+        }
+        .neon-border {
+            box-shadow: 0 0 5px rgba(249, 212, 6, 0.4), inset 0 0 5px rgba(249, 212, 6, 0.1);
+        }
+        .neon-card:hover {
+            box-shadow: 0 0 15px rgba(249, 212, 6, 0.3), 0 0 30px rgba(59, 130, 246, 0.2);
+            border-color: #f9d406;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-black">
+<!-- Decorative Background Grid -->
+<div class="fixed inset-0 z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.1]" style="background-size: 40px 40px; background-image: linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px);"></div>
+<!-- Header -->
+<header class="relative z-10 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary text-background-dark shadow-[0_0_15px_rgba(249,212,6,0.4)]">
+<span class="material-symbols-outlined" style="font-size: 24px;">videogame_asset</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-xl font-bold tracking-tight uppercase leading-none text-slate-900 dark:text-white">
+                            prototallynot's<span class="text-primary">center</span>
+</h1>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 tracking-widest uppercase">system ready</span>
+</div>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">leaderboard</span>
+                        High Scores
+                    </button>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
+<button class="flex items-center gap-2 bg-slate-100 dark:bg-card-dark hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white px-4 py-2 rounded-lg transition-all border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined" style="font-size: 20px;">account_circle</span>
+<span class="hidden sm:inline text-sm font-medium">Login</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="relative z-10 flex-grow flex flex-col">
+<!-- Hero Section -->
+<section class="w-full py-12 md:py-20 px-4">
+<div class="max-w-4xl mx-auto text-center space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Live Environment
+                </div>
+<h2 class="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 dark:text-white uppercase drop-shadow-xl">
+                    Fun <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-yellow-200 neon-text">&amp;</span> Relax
+                </h2>
+<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Access the arcade mainframe. Select your protocol. Initiate sequence.
+                </p>
+</div>
+</section>
+<!-- Game Grid -->
+<section class="w-full px-4 pb-20">
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+<!-- Card: Snake -->
+<div class="group relative bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1 neon-card">
+<!-- Glow Element -->
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-tech-blue opacity-0 group-hover:opacity-20 blur transition duration-500"></div>
+<div class="relative flex flex-col h-full">
+<!-- Image Container -->
+<div class="h-64 overflow-hidden relative bg-slate-800">
+<div class="absolute inset-0 bg-gradient-to-t from-card-dark to-transparent z-10 opacity-60"></div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Abstract green digital snake pattern on dark background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLWZSAOhzdsObEitoxcb1DFUviEaYk-c_80kyKX3HR2a88NB4n6NoXXLxue4P6VAvgooJooU35vpyRBuCIzESAd4szTbFfSVB70Fz7EH3ilplG8_PEoW5u4kHyURGiPFin5JzmLAtxiSd0-cG_H4AzCViUpvY3teP8y14pfuhcD_BIwvhS8Tz2ZjfOOmDOxq2I9wxpV-HN-8oa0pmeQ3Y71KSrhY3gAeo6I247H2aAe5kGl0EOPWpMWFBCCGhFSSGxG7ODxKsYv68');">
+</div>
+<div class="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
+<span class="text-xs font-bold text-primary tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> CLASSIC
+                                </span>
+</div>
+</div>
+<!-- Content -->
+<div class="flex flex-col flex-grow p-6 md:p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white uppercase tracking-tight group-hover:text-primary transition-colors">Snake</h3>
+<div class="h-1 w-12 bg-primary mt-2 rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-4xl">gesture</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                                The classic challenge of length and hunger. Navigate the grid, consume energy, and avoid self-collision. Don't eat your tail.
+                            </p>
+<div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between">
+<div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 5m avg</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">group</span> 1P</span>
+</div>
+<a href="../snake eat.html" class="bg-primary hover:bg-primary-hover text-slate-900 font-bold py-3 px-6 rounded-lg transition-all transform active:scale-95 shadow-[0_0_10px_rgba(249,212,6,0.3)] hover:shadow-[0_0_20px_rgba(249,212,6,0.5)] flex items-center gap-2">
+    START GAME
+    <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Card: Tetris -->
+<div class="group relative bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1 neon-card">
+<!-- Glow Element -->
+<div class="absolute -inset-0.5 bg-gradient-to-r from-tech-blue to-primary opacity-0 group-hover:opacity-20 blur transition duration-500"></div>
+<div class="relative flex flex-col h-full">
+<!-- Image Container -->
+<div class="h-64 overflow-hidden relative bg-slate-800">
+<div class="absolute inset-0 bg-gradient-to-t from-card-dark to-transparent z-10 opacity-60"></div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Neon glowing geometric block shapes falling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHWDSXagMhl09rXEt2xSyQewej4ZNN3Feil1YV6BaOgvB4-Rzc1prMzE68N3UGJycjs75psrusGs0sJpbRRMGcdWprIvNJeLmrL7lCLUjt_aq37X4KbCazeCmZ8DhkxOqycuZTmAzezX5LBWB6pUxLV0qmwuzJBXddbdwDEx1_Zru-TCz32t6uxfrUEUaTqw5br2_-TB_9b8WncWkgeCBMOGHcWnc7rVM-TXXyuN6IkDsoonLtAfcEyTHIsxp58dInEgJ5rtOvCys');">
+</div>
+<div class="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
+<span class="text-xs font-bold text-tech-blue tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">category</span> PUZZLE
+                                </span>
+</div>
+</div>
+<!-- Content -->
+<div class="flex flex-col flex-grow p-6 md:p-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white uppercase tracking-tight group-hover:text-primary transition-colors">Tetris</h3>
+<div class="h-1 w-12 bg-tech-blue mt-2 rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-tech-blue transition-colors text-4xl">view_comfy_alt</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                                Order from chaos. Stack the falling blocks with precision and clear the lines before the stack breaches the limit.
+                            </p>
+<div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between">
+<div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> ∞</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">group</span> 1P</span>
+</div>
+<a href="../block.html" class="bg-primary hover:bg-primary-hover text-slate-900 font-bold py-3 px-6 rounded-lg transition-all transform active:scale-95 shadow-[0_0_10px_rgba(249,212,6,0.3)] hover:shadow-[0_0_20px_rgba(249,212,6,0.5)] flex items-center gap-2">
+    START GAME
+    <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section (Visual Filler) -->
+<section class="w-full border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 py-12">
+<div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div class="space-y-1">
+<p class="text-3xl font-bold text-slate-900 dark:text-white">2.4M</p>
+<p class="text-xs uppercase tracking-widest text-slate-500">Lines Cleared</p>
+</div>
+<div class="space-y-1">
+<p class="text-3xl font-bold text-slate-900 dark:text-white">850k</p>
+<p class="text-xs uppercase tracking-widest text-slate-500">Apples Eaten</p>
+</div>
+<div class="space-y-1">
+<p class="text-3xl font-bold text-slate-900 dark:text-white">99.9%</p>
+<p class="text-xs uppercase tracking-widest text-slate-500">Uptime</p>
+</div>
+<div class="space-y-1">
+<p class="text-3xl font-bold text-slate-900 dark:text-white">#1</p>
+<p class="text-xs uppercase tracking-widest text-slate-500">Fun Center</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="relative z-10 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="flex items-center gap-2 text-slate-900 dark:text-white font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-primary">bolt</span>
+                         prototallynot's center
+                    </div>
+<p class="text-slate-500 text-sm">© 2026 prototallynot. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm" href="#">Support</a>
+</div>
+<div class="text-slate-400 text-sm font-medium bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700">
+                    Built with <span class="text-primary font-bold">Neon energy</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
