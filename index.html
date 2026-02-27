@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Center - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f9d406 0%, #e6c205 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(249, 212, 6, 0.4);
+        }
+        
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .logo-text span {
+            color: #f9d406;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(249, 212, 6, 0.1);
+            border: 1px solid rgba(249, 212, 6, 0.3);
+            color: #f9d406;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .status-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: #f9d406;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 30px 0 20px;
+            background: linear-gradient(to right, #f9d406, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .game-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: #f9d406;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #f9d406, #3b82f6);
+        }
+        
+        .card-header {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .game-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .game-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(249, 212, 6, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #f9d406;
+        }
+        
+        .card-content {
+            padding: 30px;
+        }
+        
+        .game-description {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .game-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .game-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+        }
+        
+        .game-features li .material-symbols-outlined {
+            color: #f9d406;
+            font-size: 20px;
+        }
+        
+        .play-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f9d406 0%, #e6c205 100%);
+            color: #0f172a;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(249, 212, 6, 0.3);
+        }
+        
+        .homepage-link {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .homepage-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .homepage-button:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .game-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-text {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined" style="font-size: 32px;">videogame_asset</span>
+                </div>
+                <div class="logo-text">Game<span>Center</span></div>
+            </div>
+            
+            <div class="status-badge">
+                <div class="pulse"></div>
+                System Ready
+            </div>
+            
+            <h1 class="main-title">Choose Your Game</h1>
+            <p class="subtitle">Select from our collection of classic games. Each offers unique challenges and endless fun.</p>
+        </header>
+        
+        <main>
+            <div class="game-grid">
+                <!-- Snake Game Card -->
+                <div class="game-card">
+                    <div class="card-header">
+                        <h2 class="game-title">Snake</h2>
+                        <div class="game-icon">
+                            <span class="material-symbols-outlined">gesture</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="game-description">
+                            The classic arcade game where you control a snake to eat food and grow longer. Avoid hitting walls or your own tail!
+                        </p>
+                        <ul class="game-features">
+                            <li><span class="material-symbols-outlined">check_circle</span> Score tracking with local high scores</li>
+                            <li><span class="material-symbols-outlined">check_circle</span> Pause and restart functionality</li>
+                            <li><span class="material-symbols-outlined">check_circle</span> Keyboard controls (Arrow keys or WASD)</li>
+                            <li><span class="material-symbols-outlined">check_circle</span> Smooth gameplay with visual feedback</li>
+                        </ul>
+                        <a href="snake eat.html" class="play-button">
+                            <span class="material-symbols-outlined">play_arrow</span>
+                            Play Snake Game
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Block Puzzle Game Card -->
+                <div class="game-card">
+                    <div class="card-header">
+                        <h2 class="game-title">Block Puzzle</h2>
+                        <div class="game-icon">
+                            <span class="material-symbols-outlined">view_comfy_alt</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="game-description">
+                            A Tetris-style puzzle game where you arrange falling blocks to complete lines. The game speeds up as you level up!
+                        </p>
+                        <ul class="game-features">
+                            <li><span class="material-symbols-outlined">check_circle</span> Next piece preview</li>
+                            <li><span class="material-symbols-outlined">check_circle</span> Level progression system</li>
+                            <li><span class="material-symbols-outlined">check_circle</span> Touch controls for mobile devices</li>
+                            <li><span class="material-symbols-outlined">check_circle</span> Score multiplier for combos</li>
+                        </ul>
+                        <a href="block.html" class="play-button">
+                            <span class="material-symbols-outlined">play_arrow</span>
+                            Play Block Puzzle
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="homepage-link">
+                <a href="stitch_game_center_home_page/code.html" class="homepage-button">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    View Enhanced Game Center Homepage
+                </a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2026 Game Center. All games are built with HTML5, CSS3, and JavaScript.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: #475569;">Use arrow keys or WASD to control the games. Have fun!</p>
+        </footer>
+    </div>
+</body>
+</html>
